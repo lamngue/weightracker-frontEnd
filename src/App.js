@@ -30,7 +30,7 @@ class App extends Component {
     console.log(dates)
     return (
       <div className="App">
-        <h1 className="text-center"> WEIGHT TRACKER APP </h1>
+        <span className="text-center"> WEIGHT TRACKER APP </span>
         <SearchPersonAndAddNewWeights add={this.addNewWeight}/>
         <Graph data={this.state.weightsOvertime}/>
         {(weights.length >0)?
