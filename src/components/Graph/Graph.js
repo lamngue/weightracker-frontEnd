@@ -31,7 +31,15 @@ class Graph extends Component{
 			<div>
 				<Bar 
 					data={this.renderChartData(this.props.data)}
-					options = {{}}
+					options = {{
+			        scales: {
+			            yAxes: [{
+			                ticks: {
+			                    beginAtZero:true
+			                }
+			            }]
+			        }
+					}}
 				/>
 			</div>
 			);
