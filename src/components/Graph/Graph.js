@@ -12,7 +12,7 @@ class Graph extends Component{
 				labels: dates,
 				datasets:[
 					{
-						label: 'Weight',
+						label: 'Weight (KG)',
 						data: weights
 					}],
 				backgroundColor: [

@@ -9,9 +9,11 @@ class searchPersonAndAddNewWeights extends Component{
 		}
 	}
 	onInputChange= (event)=>{
+		var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+		var today  = new Date();
 		this.setState({
 			weight: parseInt(event.target.value),
-			date: new Date()
+			date: today.toLocaleDateString("en-US",options)
 		})
 	}
 	onButtonSubmit = ()=>{
