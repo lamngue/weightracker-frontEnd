@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class searchPersonAndAddNewWeights extends Component{
+class AddNewWeights extends Component{
 	constructor(props){
 		super(props);
 		this.state = {
@@ -23,11 +23,11 @@ class searchPersonAndAddNewWeights extends Component{
 		return(
 			<div>
 				<div className=' form center pa4 br3 shadow-5'>
-					<input onChange={this.onInputChange} type ='text' className='f4 pa2 w-70' onFocus="this.value=''"/>
+					<input onChange={this.onInputChange} type ='numeric' className='f4 pa2 w-70' />
 					<button onClick={this.onButtonSubmit} className='w-30 grow f4 link ph3 pv2 dib white bg-light-purple'>Add New Weight</button>
 				</div>
 			</div>
 			)
 	}
 }
-export default searchPersonAndAddNewWeights;
+export default AddNewWeights;
