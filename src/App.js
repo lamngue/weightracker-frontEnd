@@ -87,6 +87,13 @@ class App extends Component {
   }
 
 
+  average = (data) => {
+    let total = data.reduce((acc,curr) => {
+      return acc + curr;
+    },0);
+    let mean = total/data.length;
+    return Math.round(mean);
+  }
 
   render() {
     return (
@@ -99,6 +106,7 @@ class App extends Component {
           <h3 className="text-center text-dark">Hello {this.state.user.name}, here are your weight statistics</h3>
           <Graph weights={this.state.user.weightsovertime}
                 dates = {this.state.user.datesovertime}/>
+           <h3>Average weight:{this.average(this.state.user.weightsovertime)}KG </h3>
         </div>
        ):
         (this.state.status==='signIn' ?
