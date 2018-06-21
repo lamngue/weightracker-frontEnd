@@ -99,7 +99,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <span className="text-center"> WEIGHT TRACKER APP </span>
+        <span className="text-center"> WEIGHT TRACKER </span>
         <NavBar isSignedIn={this.state.isSignedIn} logIn = {this.onSignedInChanged} />
         {this.state.status === 'home'?
         (<div>
