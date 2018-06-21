@@ -88,7 +88,9 @@ class App extends Component {
 
 
   average = (data) => {
-    if(!data){return 0;}
+    if(data.length==0){
+      return 0;
+    }
     let total = data.reduce((acc,curr) => {
       return acc + curr;
     },0);
