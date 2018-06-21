@@ -20,7 +20,7 @@ class Register extends React.Component{
     this.setState({password:event.target.value})
   }
   onSubmitRegister = () => {
-    fetch('http://localhost:3000/register',{
+    fetch('https://infinite-plateau-45997.herokuapp.com/register',{
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -35,6 +35,7 @@ class Register extends React.Component{
         this.props.addUser(user);
         this.props.logIn('home');
       }
+      console.log(user);
     })
   }
   onSignInChange = ()=>{
@@ -48,7 +49,7 @@ class Register extends React.Component{
         <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
         <legend className="f1 fw6 ph0 mh0">Register</legend>
       <div className="mv3">
-        <label className="db fw6 lh-copy f6" htmlFor="name">Name</label>
+        <label className="db fw6 lh-copy f3" htmlFor="name">Name</label>
         <input onChange = {this.onNameChange} 
         className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" 
         type="name" 
@@ -56,7 +57,7 @@ class Register extends React.Component{
         id="name-address"/>
       </div>
       <div className="mv3">
-        <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
+        <label className="db fw6 lh-copy f3" htmlFor="email-address">Email</label>
         <input onChange = {this.onEmailChange} 
         className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" 
         type="email" 
@@ -64,7 +65,7 @@ class Register extends React.Component{
         id="email-address"/>
       </div>
       <div className="mv3">
-        <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
+        <label className="db fw6 lh-copy f3" htmlFor="password">Password</label>
         <input onChange = {this.onPassWordChange} 
         className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" 
         type="password" 

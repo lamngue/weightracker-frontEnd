@@ -17,19 +17,33 @@ class App extends Component {
         name: '',
         email: '',
         joined: '',
-        weightsOvertime:[]
+        weightsOvertime: '[]',
+        datesovertime: '[]'
       }
     }
   }
   addUser = (data) =>{
-    this.setState({user: {
-      id: data.id,
-      name: data.name,
-      email: data.email,
-      joined: data.joined,
-      weightsOvertime: data.weightsOvertime
-    }});
+    if(data.datesovertime == null && data.weightsovertime ==null){
+        this.setState({user: {
+        id: data.id,
+        name: data.name,
+        email: data.email,
+        joined: data.joined,
+        weightsovertime: [],
+        datesovertime: []
+      }});
+    }else{
+        this.setState({user: {
+        id: data.id,
+        name: data.name,
+        email: data.email,
+        joined: data.joined,
+        weightsovertime: data.weightsovertime,
+        datesovertime: data.datesovertime
+      }});
+    }
   }
+
   onSignedInChanged = (status)=>{
     this.setState({status: status});
     if(status ==='signout' || status === 'delete'){
@@ -40,21 +54,36 @@ class App extends Component {
     }
   }
  
-  addNewWeight = (weight) =>{
-    fetch('http://localhost:3000/addWeight',{
+  addNewWeight = (data) =>{
+    fetch('https://infinite-plateau-45997.herokuapp.com/addWeight',{
       method: 'put',
       headers: {'Content-Type' : 'application/json'},
       body: JSON.stringify({
         id: this.state.user.id,
-        data: weight
+        data: data
       })
     })
     .then(response => response.json())
     .then(data => {
       this.setState(
-        Object.assign(this.state.user,{weightsOvertime: data})
+        Object.assign(this.state.user,{weightsovertime: data})
       )
     })
+    fetch('https://infinite-plateau-45997.herokuapp.com/addDate',{
+      method: 'put',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        id: this.state.user.id,
+        data: data
+      })
+    })
+    .then(response => response.json())
+    .then(data =>{
+      this.setState(
+          Object.assign(this.state.user,{datesovertime: data})
+        )
+    })
+    console.log(this.state.user)
   }
 
 
@@ -67,8 +96,6 @@ class App extends Component {
   }
 
   render() {
-    let weights = this.state.user.weightsOvertime.map((obj) => obj.weight)
-    let dates = this.state.user.weightsOvertime.map((obj)=>obj.date)
     return (
       <div className="App">
         <span className="text-center"> WEIGHT TRACKER APP </span>
@@ -76,11 +103,10 @@ class App extends Component {
         {this.state.status === 'home'?
         (<div>
           <AddNewWeights add={this.addNewWeight}/>
-          <Graph data={this.state.user.weightsOvertime}/>
-          {(weights.length >0)?
-            (<div>Average Weight: {this.average(weights)}KG</div>):
-            (<div> Average Weight: </div>)
-        }
+          <h3 className="text-center text-dark">Hello {this.state.user.name}, here are your weight statistics</h3>
+          <Graph weights={this.state.user.weightsovertime}
+                dates = {this.state.user.datesovertime}/>
+          Average weight: <h3>{this.average(this.state.user.weightsovertime)}KG </h3>
         </div>
        ):
         (this.state.status==='signIn' ?

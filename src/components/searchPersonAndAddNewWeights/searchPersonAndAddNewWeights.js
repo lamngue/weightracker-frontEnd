@@ -18,12 +18,13 @@ class AddNewWeights extends Component{
 	}
 	onButtonSubmit = ()=>{
 		this.props.add(this.state);
+		this.setState({weight: '',date: 0})
 	}
 	render(){
 		return(
 			<div>
 				<div className=' form center pa4 br3 shadow-5'>
-					<input onChange={this.onInputChange} type ='numeric' className='f4 pa2 w-70' />
+					<input id ="mainInput" onChange={this.onInputChange} type ='numeric' className='f4 pa2 w-70' />
 					<button onClick={this.onButtonSubmit} className='w-30 grow f4 link ph3 pv2 dib white bg-light-purple'>Add New Weight</button>
 				</div>
 			</div>
